@@ -1,0 +1,91 @@
+/* Thiết lập cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    padding: 15px; /* Giữ khoảng cách với viền màn hình */
+}
+
+/* KHUNG GRID CHÍNH (BỐ CỤC DESKTOP) */
+.grid-container {
+    display: grid;
+    /* Chia làm 4 cột bằng nhau, mỗi cột 1 phần (1fr) */
+    grid-template-columns: repeat(4, 1fr); 
+    
+    /* Thiết lập tên khu vực (grid-template-areas) cho từng ô trên lưới. 
+       Mỗi dòng tương ứng với một hàng trên giao diện thực tế. */
+    grid-template-areas: 
+        "header header header header"
+        "nav nav nav nav"
+        "main main main sidebar"
+        "footer footer footer footer";
+        
+    gap: 15px; /* Khoảng cách giữa các thành phần */
+    max-width: 1200px; /* Giới hạn độ rộng tối đa */
+    margin: 0 auto; /* Căn giữa toàn bộ giao diện */
+    min-height: 90vh; /* Đảm bảo khung đủ cao */
+}
+
+/* ĐỊNH DẠNG TỪNG THÀNH PHẦN (Gắn Tên Area và Màu Sắc) */
+.grid-container > * {
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px; /* Bo góc nhẹ */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header {
+    grid-area: header;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navigation {
+    grid-area: nav;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+}
+
+.main-content {
+    grid-area: main;
+    background-color: #ffffff;
+    text-align: left; /* Chữ trong nội dung chính căn trái để dễ đọc */
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f1c40f;
+    color: #333;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #34495e;
+    color: white;
+}
+
+/* =========================================
+   MEDIA QUERIES CHO MOBILE (Màn hình < 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    .grid-container {
+        /* Chuyển Grid thành 1 cột duy nhất */
+        grid-template-columns: 1fr; 
+        
+        /* Cấu trúc lại các khu vực: xếp chồng từ trên xuống dưới */
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "sidebar"
+            "footer";
+    }
+}
